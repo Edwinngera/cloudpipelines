@@ -218,7 +218,7 @@ jobs:
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints:
-            - 'ab:52:25:68:df:4c:3a:d5:48:18:55:d8:f9:3b:df:de'
+            - '74:5e:54:e9:36:b2:fa:95:f9:ec:66:94:cd:d3:0e:e4'
       - run:
           name: Install dependencies
           command: |
@@ -246,7 +246,7 @@ jobs:
 
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml \
-            --key-file ~/.ssh/id_rsa_ab522568df4c3ad5481855d8f93bdfde
+            --key-file ~/.ssh/id_rsa_745e54e936b2fa95f9ec6694cdd30ee4
       # save backend back to workspace
       - persist_to_workspace:
           root: ~/
@@ -340,7 +340,7 @@ jobs:
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints:
-            - 'ab:52:25:68:df:4c:3a:d5:48:18:55:d8:f9:3b:df:de'
+            - '74:5e:54:e9:36:b2:fa:95:f9:ec:66:94:cd:d3:0e:e4'
       # attach workspace
       - attach_workspace:
           at: ~/
@@ -364,7 +364,7 @@ jobs:
             echo "Contents of the inventory.txt file is ------$(tail -1 inventory.txt)"
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml \
-            --key-file ~/.ssh/id_rsa_ab522568df4c3ad5481855d8f93bdfde
+            --key-file ~/.ssh/id_rsa_745e54e936b2fa95f9ec6694cdd30ee4
       # Here's where you will add some code to rollback on failure
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
@@ -489,7 +489,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - 'ab:52:25:68:df:4c:3a:d5:48:18:55:d8:f9:3b:df:de'
+            - '74:5e:54:e9:36:b2:fa:95:f9:ec:66:94:cd:d3:0e:e4'
       - run:
           name: Install deps
           command: |
@@ -529,8 +529,8 @@ workflows:
           filters:
             branches:
               only: [master]
-      # - configure-infrastructure:
-      #     requires: [deploy-infrastructure]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
       # - run-migrations:
       #     requires: [configure-infrastructure]
       # - deploy-frontend:
