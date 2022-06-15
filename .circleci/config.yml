@@ -131,7 +131,7 @@ jobs:
       - checkout
       # Restore from cache
       - restore_cache:
-          keys: [frontend-build-v2]
+          keys: [frontend-build]
       # Your job code here
       - run:
           name: Analyse frontend
@@ -150,16 +150,16 @@ jobs:
       - checkout
       # Restore from cache
       - restore_cache:
-          keys: [backend-build-v2]
+          keys: [backend-build]
       # Your job code here
       - run:
           name: Analyse backend
           command: |
             cd backend
             npm install
-            npm update mkdirp --depth 6
-            npm install --save-dev webpack@5.73.0
-            npm audit fix --audit-level=critical --force
+            #npm update mkdirp --depth 6
+            #npm install --save-dev webpack@5.73.0
+            #npm audit fix --audit-level=critical --force
             npm audit --audit-level=critical
       - slack/notify:
                 event: fail
