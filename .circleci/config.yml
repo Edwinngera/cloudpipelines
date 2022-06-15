@@ -393,12 +393,12 @@ jobs:
             --output text)
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
-            curl "${API_URL}/api/status"
+            #curl "${API_URL}/api/status"
             if curl -s "${API_URL}/api/status"
             then
-                return 0
-            else
                 return 1
+            else
+                return 0
             fi
       - run:
           name: Frontend smoke test.
@@ -412,10 +412,10 @@ jobs:
             else
               return 1
             fi
-      - destroy-environment:
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-      - revert-migrations:
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      # - destroy-environment:
+      #     workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      # - revert-migrations:
+      #     workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
   cloudfront-update:
     docker:
