@@ -375,6 +375,8 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update --no-cache tar gzip nodejs npm tree aws-cli ansible
+            cd backend
+            npm install
       - run:
           name: Deploy backend
           command: |
