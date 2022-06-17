@@ -206,8 +206,7 @@ jobs:
             ansible-playbook -i inventory.txt configure-server.yml
       - destroy-environment
 
-      
-   run-migrations:
+  run-migrations:
     docker:
       # Docker image here that supports NodeJS
       - image: python:3.10-alpine3.16
@@ -219,7 +218,7 @@ jobs:
           command: |
             apk add --update --no-cache tar gzip nodejs npm aws-cli curl
       - restore_cache:
-          keys: [backend-build-v2]
+          keys: [backend-deps]
       - run:
           name: Run migrations
           command: |
